@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider img {
+    width: 100%;
+    height: auto;
+}
+
+/* Optional: Add styling for navigation arrows or pagination */
+/* Example navigation styles */
+.slider-container .prev, .slider-container .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border: none;
+}
+
+.slider-container .prev {
+    left: 10px;
+}
+
+.slider-container .next {
+    right: 10px;
+}
+
+/* Your existing CSS styles remain the same */
+
+.slider-container {
+    position: relative;
+}
+
+/* Optional: Add styling for navigation arrows */
+/* Example navigation styles */
+.slider-container .prev, .slider-container .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border: none;
+}
+
+.slider-container .prev {
+    left: 10px;
+}
+
+.slider-container .next {
+    right: 10px;
+}
+JavaScript (script.js):
+
+javascript
+Copy code
+let slideIndex = 1;
+
+function showSlides(n) {
+    const slides = document.getElementById("imageSlider").children;
+    
+    if (n > slides.length) {
+        slideIndex = 1;
+    } else if (n < 1) {
+        slideIndex = slides.length;
+    }
+
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+}
+
+function changeSlide(n) {
+    showSlides(slideIndex += n);
+}
+
+function autoSlide() {
+    changeSlide(1);
+    setTimeout(autoSlide, 3000); // Change slide every 3 seconds
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    showSlides(slideIndex);
+    autoSlide(); // Start auto-slide on page load
+});
